@@ -6,9 +6,9 @@
     <title>For My Madam ❤️</title>
     <style>
         :root {
-            --primary-color: #ff4d6d;
-            --secondary-color: #ff85a1;
-            --bg-color: #fff0f3;
+            --primary-gradient: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            --secondary-gradient: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            --bg-gradient: linear-gradient(180deg, #fff5f5 0%, #ffe3e3 100%);
             --text-color: #2b2d42;
         }
 
@@ -16,221 +16,178 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
+            background: var(--bg-gradient);
             color: var(--text-color);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             overflow-x: hidden;
+            padding: 20px;
         }
 
         .container {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            width: 90%;
-            max-width: 500px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(255, 117, 140, 0.15);
+            width: 100%;
+            max-width: 440px;
             text-align: center;
             position: relative;
-            transition: all 0.5s ease;
+            border: 2px solid rgba(255, 255, 255, 0.6);
         }
 
         .step {
             display: none;
-            animation: fadeIn 0.5s ease forward;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .step.active {
             display: block;
+            opacity: 1;
+            transform: scale(1);
         }
 
         h1 {
-            color: var(--primary-color);
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 20px;
-            font-size: 24px;
+            font-size: 28px;
+            font-weight: 800;
         }
 
         p {
-            font-size: 18px;
+            font-size: 17px;
             line-height: 1.6;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            color: #4a5568;
+            font-weight: 500;
         }
 
         .btn-container {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
         }
 
         button {
-            padding: 12px 28px;
+            width: 100%;
+            padding: 16px;
             font-size: 16px;
-            font-weight: bold;
+            font-weight: 700;
             border: none;
-            border-radius: 50px;
+            border-radius: 16px;
             cursor: pointer;
-            transition: transform 0.2s, background-color 0.2s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px rgba(255, 117, 140, 0.2);
         }
 
         .btn-primary {
-            background-color: var(--primary-color);
+            background: var(--primary-gradient);
             color: white;
         }
 
         .btn-primary:hover {
-            background-color: #ff1a43;
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(255, 117, 140, 0.3);
         }
 
         .btn-secondary {
-            background-color: #e2e8f0;
-            color: #4a5568;
+            background: #ffffff;
+            color: #718096;
+            border: 2px solid #edf2f7;
+            box-shadow: none;
         }
 
         .btn-secondary:hover {
-            background-color: #cbd5e1;
+            background: #f7fafc;
         }
 
-        /* Dummy Game Styling */
-        .dummy-container {
+        /* Upgraded Character Visuals */
+        .character-display {
+            font-size: 90px;
+            margin-bottom: 25px;
+            display: inline-block;
+            transition: transform 0.1s ease;
+            user-select: none;
+        }
+
+        .dummy-wrapper {
             position: relative;
-            width: 200px;
-            height: 250px;
-            margin: 0 auto 20px;
+            display: inline-block;
             cursor: pointer;
-        }
-
-        .dummy {
             width: 100%;
-            height: 100%;
-            background: #fbc4ab;
+            padding: 20px 0;
+        }
+
+        .dummy-wrapper:active .character-display {
+            transform: scale(0.85);
+        }
+
+        .dummy-card {
+            background: #fff;
+            border: 2px dashed #ff758c;
             border-radius: 20px;
-            position: relative;
-            border: 4px solid #f08080;
-            overflow: hidden;
-            transition: transform 0.1s;
+            padding: 20px;
+            box-shadow: inset 0 0 15px rgba(255,117,140,0.05);
         }
 
-        /* Simple CSS representation of the cartoon dummy */
-        .dummy-head {
-            width: 90px;
-            height: 90px;
-            background: #ffdbac;
-            border-radius: 50%;
-            position: absolute;
-            top: 20px;
-            left: 55px;
-            border: 3px solid #e0a96d;
-        }
-        .dummy-hair {
-            width: 100px;
-            height: 40px;
-            background: #2b2d42;
-            border-radius: 50px 50px 0 0;
-            position: absolute;
-            top: 12px;
-            left: 50px;
-        }
-        .dummy-eyes {
-            width: 12px;
-            height: 12px;
-            background: #2b2d42;
-            border-radius: 50%;
-            position: absolute;
-            top: 45px;
-            left: 75px;
-            box-shadow: 25px 0 #2b2d42;
-        }
-        .dummy-shirt {
-            width: 130px;
-            height: 110px;
-            background: #ffffff;
-            border-radius: 20px 20px 0 0;
-            position: absolute;
-            bottom: 10px;
-            left: 35px;
-            border: 3px solid #cbd5e1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #94a3b8;
-            font-size: 14px;
-        }
-
-        .dummy.hit {
-            animation: shake 0.15s infinite;
-            background: #ff85a1;
-        }
-
-        .hit-effect {
-            position: absolute;
-            color: red;
-            font-weight: bold;
-            font-size: 24px;
-            pointer-events: none;
-            animation: floatUp 0.4s ease-out forwards;
-            z-index: 10;
-        }
-
+        /* Progress Bar */
         .progress-bar {
             width: 100%;
-            background-color: #e2e8f0;
+            background-color: #edf2f7;
             border-radius: 10px;
-            margin-bottom: 20px;
-            height: 15px;
+            margin-bottom: 25px;
+            height: 12px;
             overflow: hidden;
         }
 
         .progress {
             width: 0%;
             height: 100%;
-            background-color: var(--primary-color);
-            transition: width 0.1s ease;
+            background: var(--primary-gradient);
+            transition: width 0.15s ease-out;
         }
 
-        .bouquet-img {
-            font-size: 80px;
-            margin-bottom: 20px;
-            animation: bounce 2s infinite;
+        .hit-effect {
+            position: absolute;
+            font-weight: 900;
+            font-size: 26px;
+            pointer-events: none;
+            animation: floatUp 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+            z-index: 10;
+            background: var(--secondary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes shake {
-            0% { transform: translate(2px, 1px) rotate(0deg); }
-            10% { transform: translate(-1px, -2px) rotate(-1deg); }
-            20% { transform: translate(-3px, 0px) rotate(1deg); }
-            30% { transform: translate(0px, 2px) rotate(0deg); }
-            40% { transform: translate(1px, -1px) rotate(1deg); }
-            50% { transform: translate(-1px, 2px) rotate(-1deg); }
-            60% { transform: translate(-3px, 1px) rotate(0deg); }
-            70% { transform: translate(2px, 1px) rotate(-1deg); }
-            80% { transform: translate(-1px, -1px) rotate(1deg); }
-            90% { transform: translate(2px, 2px) rotate(0deg); }
-            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        .heart-particle {
+            position: absolute;
+            font-size: 24px;
+            pointer-events: none;
+            animation: floatHearts 1.5s ease-out forwards;
         }
 
         @keyframes floatUp {
-            0% { opacity: 1; transform: translateY(0) scale(1); }
-            100% { opacity: 0; transform: translateY(-40px) scale(1.2); }
+            0% { opacity: 1; transform: translateY(0) scale(0.7) rotate(-15deg); }
+            50% { transform: translateY(-30px) scale(1.1) rotate(15deg); }
+            100% { opacity: 0; transform: translateY(-60px) scale(1) rotate(0deg); }
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-20px); }
-            60% { transform: translateY(-10px); }
+        @keyframes floatHearts {
+            0% { opacity: 0; transform: translateY(0) scale(0.5); }
+            20% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-120px) translateX(var(--x-move)) scale(1.2) rotate(var(--rot)); }
         }
     </style>
 </head>
@@ -240,47 +197,48 @@
     
     <!-- STEP 1: The Apology -->
     <div id="step1" class="step active">
-        <h1>I am SO Sorry! 🥺</h1>
-        <p>I know I made a mistake, and I feel terrible about it. You are my absolute priority. Do you want to beat me up for this?</p>
+        <div class="character-display">🙇‍♂️</div>
+        <h1>I am SO Sorry... 🥺</h1>
+        <p>I know I messed up, and it's killing me. You deserve to be angry. Do you want to beat me up for this mistake?</p>
         <div class="btn-container">
-            <button class="btn-primary" onclick="goToStep(2)">Yes, absolutely!</button>
-            <button class="btn-secondary" id="notBtn" onclick="handleNotChoice()">No, it's fine...</button>
+            <button class="btn-primary" onclick="goToStep(2)">Yes, let me punch you! 🥊</button>
+            <button class="btn-secondary" onclick="handleNotChoice()">No, I can't do that...</button>
         </div>
     </div>
 
-    <!-- STEP 1 Alternate: Force "Yes" -->
+    <!-- STEP 1 Alt: Force "Yes" -->
     <div id="step1-alt" class="step">
-        <h1>Please? 🥺</h1>
-        <p>No, please beat me! I won't feel better until you release your anger on me. Come on, punish me for my mistake!</p>
+        <div class="character-display">🫣</div>
+        <h1>Please, Punish Me!</h1>
+        <p>I won't let myself off the hook easily. You HAVE to release your anger, please beat me so I can make it up to you!</p>
         <div class="btn-container">
-            <button class="btn-primary" onclick="goToStep(2)">Okay, fine! 🥊</button>
+            <button class="btn-primary" onclick="goToStep(2)">Okay, get ready! 🥊</button>
         </div>
     </div>
 
     <!-- STEP 2: Beating the Dummy -->
     <div id="step2" class="step">
-        <h1>Punish Me! 🥊</h1>
-        <p>I am always yours. You have full right to beat me for my mistakes. Tap the dummy below to punch me until the bar is full!</p>
+        <h1>Tap To Punish Me! 🥊</h1>
+        <p>I am always yours, beat me up until your anger goes away! Tap the avatar below repeatedly:</p>
         
         <div class="progress-bar">
             <div id="punchProgress" class="progress"></div>
         </div>
 
-        <div class="dummy-container" onclick="punchDummy(event)">
-            <div id="dummyTarget" class="dummy">
-                <div class="dummy-hair"></div>
-                <div class="dummy-head"></div>
-                <div class="dummy-eyes"></div>
-                <div class="dummy-shirt">DUMMY ME</div>
+        <div class="dummy-wrapper" onclick="punchDummy(event)">
+            <div class="dummy-card">
+                <div id="dummyCharacter" class="character-display">👦</div>
+                <div style="font-weight: 700; color: #a0aec0; letter-spacing: 1px; font-size: 13px;">DUMMY AVATAR</div>
             </div>
         </div>
-        <p style="font-size: 14px; color: #718096;" id="hitCountTxt">Hits: 0 / 10</p>
+        <p style="font-size: 14px; color: #718096; margin-top: 15px;" id="hitCountTxt">Anger Released: 0%</p>
     </div>
 
     <!-- STEP 3: Feeling Good? -->
     <div id="step3" class="step">
-        <h1>Are you feeling better now? 😊</h1>
-        <p>Hopefully, beating me up brought a little smile back to your face!</p>
+        <div class="character-display">😁</div>
+        <h1>Feeling Better Now? ✨</h1>
+        <p>Did punishing your dummy boy bring back even a tiny bit of your beautiful smile?</p>
         <div class="btn-container">
             <button class="btn-primary" onclick="goToStep(4)">Yes, much better!</button>
         </div>
@@ -288,13 +246,13 @@
 
     <!-- STEP 4: The Proposal -->
     <div id="step4" class="step">
-        <div class="bouquet-img">💐</div>
-        <h1>My Final Proposal... 💖</h1>
-        <p>Now that you've forgiven me, I want to say what is truly in my heart...</p>
-        <h2 style="color: var(--primary-color); margin-bottom: 25px; font-size: 26px;">I Love You Forever, My Madam! 🥰</h2>
-        <p style="font-style: italic; font-size: 16px;">Will you stay by my side and let me make it up to you every single day?</p>
+        <div class="character-display" style="animation: pulse 2s infinite;">💐</div>
+        <h1>My Forever Promise 💖</h1>
+        <p>Now that you have vented your anger, I want to tell you what's truly inside my heart...</p>
+        <h2 style="color: #ff758c; margin-bottom: 25px; font-size: 26px; font-weight: 800;">I Love You Forever, My Madam! 🥰</h2>
+        <p style="font-style: italic; font-size: 15px; color: #718096;">Will you accept my roses, forgive me completely, and stay mine forever?</p>
         <div class="btn-container">
-            <button class="btn-primary" onclick="celebrate()">YES! 💖</button>
+            <button class="btn-primary" onclick="celebrate(event)">YES, I LOVE YOU TOO! 💖</button>
         </div>
     </div>
 
@@ -303,65 +261,72 @@
 <script>
     let hitCount = 0;
     const totalRequiredHits = 10;
+    const dummyEmojis = ['👦', '💥', '🤕', '😭', '😵'];
 
     function goToStep(stepNum) {
-        // Hide all steps
-        document.querySelectorAll('.step').forEach(step => {
-            step.classList.remove('active');
-        });
+        document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
         
-        // Show target step
-        if(stepNum === 2) {
-            document.getElementById('step2').classList.add('active');
-        } else if(stepNum === 3) {
-            document.getElementById('step3').classList.add('active');
-        } else if(stepNum === 4) {
-            document.getElementById('step4').classList.add('active');
-        }
+        setTimeout(() => {
+            if(stepNum === 2) document.getElementById('step2').classList.add('active');
+            if(stepNum === 3) document.getElementById('step3').classList.add('active');
+            if(stepNum === 4) document.getElementById('step4').classList.add('active');
+        }, 100);
     }
 
     function handleNotChoice() {
-        document.querySelectorAll('.step').forEach(step => {
-            step.classList.remove('active');
-        });
+        document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
         document.getElementById('step1-alt').classList.add('active');
     }
 
     function punchDummy(event) {
-        const dummy = document.getElementById('dummyTarget');
+        const dummy = document.getElementById('dummyCharacter');
         hitCount++;
         
-        // Update Progress Bar
         const percentage = (hitCount / totalRequiredHits) * 100;
         document.getElementById('punchProgress').style.width = percentage + '%';
-        document.getElementById('hitCountTxt').innerText = `Hits: ${hitCount} / ${totalRequiredHits}`;
+        document.getElementById('hitCountTxt').innerText = `Anger Released: ${Math.round(percentage)}%`;
 
-        // Add Hit Text Effect
-        const container = document.querySelector('.dummy-container');
+        // Switch cartoon faces based on damage level
+        if (hitCount >= 8) dummy.innerText = dummyEmojis[4];
+        else if (hitCount >= 5) dummy.innerText = dummyEmojis[3];
+        else if (hitCount >= 3) dummy.innerText = dummyEmojis[2];
+        else dummy.innerText = dummyEmojis[1];
+
+        // Hit Text Effect
+        const wrapper = document.querySelector('.dummy-wrapper');
         const hitTxt = document.createElement('div');
         hitTxt.classList.add('hit-effect');
-        hitTxt.innerText = ['POW!', 'BAM!', 'OUCH!', 'SORRY!'][Math.floor(Math.random() * 4)];
+        hitTxt.innerText = ['POW!', '💥', 'BAM!', 'SORRY!', '🤕'][Math.floor(Math.random() * 5)];
         hitTxt.style.left = (event.offsetX - 20) + 'px';
         hitTxt.style.top = (event.offsetY - 20) + 'px';
-        container.appendChild(hitTxt);
+        wrapper.appendChild(hitTxt);
 
-        // Shake animation
-        dummy.classList.add('hit');
         setTimeout(() => {
-            dummy.classList.remove('hit');
+            if(hitCount < totalRequiredHits) dummy.innerText = dummyEmojis[0];
             hitTxt.remove();
         }, 300);
 
-        // Check if game complete
         if (hitCount >= totalRequiredHits) {
-            setTimeout(() => {
-                goToStep(3);
-            }, 500);
+            setTimeout(() => goToStep(3), 600);
         }
     }
 
-    function celebrate() {
-        alert("Yay! 🎉 You made me the happiest person ever! I promise to always love you and keep you smiling. ❤️");
+    function celebrate(event) {
+        // Explode beautiful hearts on click
+        for (let i = 0; i < 25; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            heart.innerText = ['❤️', '💖', '💐', '✨'][Math.floor(Math.random() * 4)];
+            heart.style.left = '50%';
+            heart.style.top = '40%';
+            heart.style.setProperty('--x-move', (Math.random() * 300 - 150) + 'px');
+            heart.style.setProperty('--rot', (Math.random() * 360) + 'deg');
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 1500);
+        }
+        setTimeout(() => {
+            alert("💖 You made me the happiest person alive! I love you infinitely, Madam. 🥰");
+        }, 200);
     }
 </script>
 
